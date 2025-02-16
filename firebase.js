@@ -25,15 +25,13 @@ async function getPassword(username){
     const data = doc.data();
     const Username = data.Username;
     if (Username == username){
-      console.log("login"); //TODO: fix
+      console.log("login");
     } else {
       console.log("wrong password")
     }
 
   });
 }
-
-getPassword("asdfasdfasdffdasdf");
 
 async function addUser(username, password){
   try {
