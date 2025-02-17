@@ -11,6 +11,7 @@ const app = express();
 const port = process.env.PORT || 10000;
 const host = '0.0.0.0';
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 
