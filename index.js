@@ -78,6 +78,8 @@ app.post('/submit', async (req, res) => {
     if (login){
         res.sendFile(path.join(__dirname, "public", "index.html"));
         login = false;
+    } else {
+        res.sendFile(path.join(__dirname, "public", "login.html"))
     }
 });
 
