@@ -1,0 +1,37 @@
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+  }
+
+.taskbar {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #0f4e3b;
+    color: white;
+    padding: 10px 20px;
+}
+
+.left, .right {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    padding: 10px;
+    font-size: 20px;
+    color: #f3f3f3;
+}
+
+a:link {
+    color: #f3f3f3;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #f3f3f3;
+
+}
