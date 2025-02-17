@@ -42,6 +42,7 @@ async function checkLoginStatus(username, password) {
     if (Username == username) {
       if (Password == password) {
         login = true;
+        return Username;
       }
     }
   });
@@ -88,7 +89,7 @@ async function addDonation(username, amount, location) {
   const newPoints = currentData.Points + amount;
 
   await updateDoc(userDoc.ref, {
-    Donations: newDonation,
+    Donation: newDonation,
     Location: [...currentData.Location, location],
     Points: newPoints,
   });
@@ -102,6 +103,16 @@ async function addUser(username, password) {
     Location: [],
     Donation: 0,
   });
+}
+
+async function getPoints(username) {
+  const usersCollectionRef = collection(db, "information");
+  const q = query(usersCollectionRef, where("Username", "==", username));
+  const querySnapshot = await getDocs(q);
+  const userDoc = querySnapshot.docs[0];
+  const userData = userDoc.data();
+
+  return userData.Points;
 }
 
 app.get("/", (req, res) => {
@@ -168,10 +179,12 @@ app.get("/location", (req, res) => {
   }
 });
 
-app.get("/profile", (req, res) => {
+app.get("/profile", async (req, res) => {
   const user = req.cookies.user;
   if (user) {
     res.sendFile(path.join(__dirname, "public", "profile.html"));
+    const points = await getPoints(user);
+    res.json({points});
   } else {
     res.sendFile(path.join(__dirname, "public", "login.html"));
   }
