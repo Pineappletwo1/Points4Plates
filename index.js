@@ -60,11 +60,9 @@ async function addUser(username, password){
 }
 
 app.get('/', (req, res) => {
-    if (login){
-        res.sendFile(path.join(__dirname, "public", "index.html"));
-    } else {
-        res.sendFile(path.join(__dirname, "public", "login.html"))
-    } 
+    
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+  
 });
 
 app.get('/login', (req, res) => {
@@ -102,6 +100,4 @@ app.get('/profile', (req, res) => {
 });
 
 
-app.listen(port, host, () => {
-    console.log(`Server running at http://${host}:${port}/`);
-});
+app.listen(8080);
