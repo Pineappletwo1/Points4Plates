@@ -83,10 +83,14 @@ app.post('/submit', async (req, res) => {
 });
 
 app.post('/create', async (req, res) => {
-
     await addUser(req.body.Username, req.body.Password);
     await getPassword(req.body.Username);
-    
+    if (login){
+        res.sendFile(path.join(__dirname, "public", "index.html"));
+        login = false;
+    } else {
+        res.sendFile(path.join(__dirname, "public", "login.html"))
+    }
 });
 
 
