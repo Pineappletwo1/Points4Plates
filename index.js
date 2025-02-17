@@ -6,12 +6,14 @@ import { collection, addDoc } from 'firebase/firestore';
 import { getDocs } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const port = process.env.PORT || 10000;
 const host = '0.0.0.0';
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
+app.use(cookieParser());
 
 let login = false;
 
@@ -59,7 +61,8 @@ async function addUser(username, password){
 }
 
 app.get('/', (req, res) => {
-    if (login){
+    const user = req.cookies.user;
+    if (user){
         res.sendFile(path.join(__dirname, "public", "index.html"));
     } else {
         res.sendFile(path.join(__dirname, "public", "login.html"))
@@ -67,11 +70,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-    if (login){
-        res.sendFile(path.join(__dirname, "public", "signup.html"));
-    } else {
-        res.sendFile(path.join(__dirname, "public", "login.html"))
-    } 
+    res.sendFile(path.join(__dirname, "public", "signup.html"));
+
 });
 
 app.get('/login', (req, res) => {
@@ -83,8 +83,12 @@ app.post('/submit', async (req, res) => {
     const password = req.body.Password;
     await getPassword(username)
     if (login){
+        res.cookie('user', username, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 86400000
+        });
         res.sendFile(path.join(__dirname, "public", "index.html"));
-        login = false;
     } else {
         res.sendFile(path.join(__dirname, "public", "login.html"))
     }
@@ -93,19 +97,20 @@ app.post('/submit', async (req, res) => {
 app.post('/create', async (req, res) => {
     await addUser(req.body.Username, req.body.Password);
     await getPassword(req.body.Username);
-    if (login){
-        res.sendFile(path.join(__dirname, "public", "index.html"));
-        login = false;
-    } else {
-        res.sendFile(path.join(__dirname, "public", "login.html"))
-    }
+    res.cookie('user', username, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 86400000
+    });
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 
 
 
 app.get('/location', (req, res) => {
-    if (login){
+    const user = req.cookies.user;
+    if (user){
         res.sendFile(path.join(__dirname, "public", "location.html"));
     } else {
         res.sendFile(path.join(__dirname, "public", "login.html"))
@@ -113,7 +118,8 @@ app.get('/location', (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-    if (login){
+    const user = req.cookies.user;
+    if (user){
         res.sendFile(path.join(__dirname, "public", "profile.html"));
     } else {
         res.sendFile(path.join(__dirname, "public", "login.html"))
