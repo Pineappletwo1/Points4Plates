@@ -42,7 +42,7 @@ async function getPassword(username){
 }
 
 async function updateLeaderboard(){
-
+    
 }
 
 async function addUser(username, password){
@@ -81,6 +81,14 @@ app.post('/submit', async (req, res) => {
         res.sendFile(path.join(__dirname, "public", "login.html"))
     }
 });
+
+app.post('/create', async (req, res) => {
+
+    await addUser(req.body.Username, req.body.Password);
+    await getPassword(req.body.Username);
+    
+});
+
 
 
 

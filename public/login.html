@@ -8,12 +8,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-    <form action="/submit" method="POST">
-        Usernamae: <input type="text" name="Username" required><br><br>
-        Password: <input type="password" name="Password" required><br><br>
-        <input type="submit" value="Submit">
-      </form>
+    <div class="taskbar">
+        <div class="left">
+            <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
+            <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
+            <div class="link"><a href="donate.html">Donate</a></div>
+        </div>
+        <div class="right">
+            <div class="link"><a href="sign up.html">Sign Up</a></div>
+            <div class="link"><a href="login.html">Log In</a></div>
+            <div class="icon"><a href="profile.html"><img src="media/logo.png" alt="Points4Plates" style="height: 40px;"></a></div>
+            <div class="link"><a href="profile.html">Username</a></div>
+            
+        </div>
+    </div>
+
+    <div class="input">
+        <h1 style="padding-left: 20px;">Log In</h1>
+        <form action="/submit" method="POST" style="padding: 20px;">
+            Username: <input type="text" name="Username" r  equired><br><br>
+            Password: <input type="password" name="Password" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
     <script>
 
     </script>

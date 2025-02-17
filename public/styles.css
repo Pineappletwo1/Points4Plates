@@ -1,18 +1,22 @@
 
 
-body {
+body, html {
+    height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
-  }
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+    
 
 .taskbar {
+    position: fixed;
     display: flex;
     justify-content: space-between;
-
+    width: 100%;
     background-color: #0f4e3b;
     color: white;
     padding: 10px 20px;
+    box-sizing: border-box; 
 }
 
 .left, .right {
@@ -34,4 +38,38 @@ a:link {
 a:visited {
     color: #f3f3f3;
 
+}
+
+.bg-image {
+    
+    background-image: url("media/bg.jpg");
+       
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+.bg-text {
+   
+    background-color: rgba(0, 0, 0, 0.774); 
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+  }
+
+.input {
+    padding-top: 70px;
+}
+
+form {
+    padding: 20px;
 }
