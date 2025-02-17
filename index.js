@@ -8,6 +8,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import { fileURLToPath } from 'url';
 
 const app = express();
+const port = process.env.PORT || 10000;
+const host = '0.0.0.0';
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
@@ -97,4 +99,6 @@ app.get('/profile', (req, res) => {
 });
 
 
-app.listen(8080);
+server.listen(port, host, () => {
+    console.log(`Server running at http://${host}:${port}/`);
+  });
