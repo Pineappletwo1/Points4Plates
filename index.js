@@ -77,6 +77,7 @@ app.post('/submit', async (req, res) => {
     await getPassword(username)
     if (login){
         res.sendFile(path.join(__dirname, "public", "index.html"));
+        login = false;
     }
 });
 
