@@ -99,6 +99,6 @@ app.get('/profile', (req, res) => {
 });
 
 
-server.listen(port, host, () => {
+app.listen(port, host, () => {
     console.log(`Server running at http://${host}:${port}/`);
-  });
+});
