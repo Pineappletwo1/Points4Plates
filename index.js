@@ -12,7 +12,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 
-var login = false;
+let login = false;
 
 const firebaseConfig = {
     apiKey: "AIzaSyCa29mdIdL7sVZrFZ85jX43tSY4N-nCBpE",
@@ -69,11 +69,11 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "login.html"))
 });
 
-app.post('/submit', (req, res) => {
+app.post('/submit', async (req, res) => {
     const username = req.body.Username;
     const password = req.body.Password;
-    getPassword(username)
-    if (login == true){
+    await getPassword(username)
+    if (login){
         res.sendFile(path.join(__dirname, "public", "index.html"));
     }
 });
