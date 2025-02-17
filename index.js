@@ -82,21 +82,11 @@ app.post('/submit', async (req, res) => {
     }
 });
 
-app.get('/style.css', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'style.css'));
-});
 
-app.get('/donate', (req, res) => {
-    if (login){
-        res.sendFile(path.join(__dirname, "public", "donate.html"));
-    } else {
-        res.sendFile(path.join(__dirname, "public", "login.html"))
-    }
-});
 
-app.get('/leaderboard', (req, res) => {
+app.get('/location', (req, res) => {
     if (login){
-        res.sendFile(path.join(__dirname, "public", "leaderboard.html"));
+        res.sendFile(path.join(__dirname, "public", "location.html"));
     } else {
         res.sendFile(path.join(__dirname, "public", "login.html"))
     }
@@ -110,6 +100,7 @@ app.get('/profile', (req, res) => {
     }
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(port, host, () => {
     console.log(`Server running at http://${host}:${port}/`);
