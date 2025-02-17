@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, updateDoc } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 import { getDocs } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
@@ -46,8 +46,32 @@ async function checkLoginStatus(username, password){
   });
 }
 
-async function updateLeaderboard(){
+async function getLeaderboard() {
+    const amountDoc = await getDoc(doc(db, 'leaderboard', 'amount'));
+    const nameDoc = await getDoc(doc(db, 'leaderboard', 'name'));
     
+    const amountData = amountDoc.data();    
+    const nameData = nameDoc.data();
+    
+    amountData.values.forEach(value => {
+        console.log(value); //remove and value is each element in array
+    });
+    
+    nameData.values.forEach(value => {
+        console.log(value); //same as above
+    });
+}
+
+async function changeLeaderboard(amount, name) {
+    const amountRef = doc(db, 'leaderboard', 'amount');
+    const nameRef = doc(db, 'leaderboard', 'name');
+
+    await updateDoc(amountRef, {
+        values: amount
+    });
+    await updateDoc(nameRef, {
+        values: name
+    });
 }
 
 async function addUser(username, password){
