@@ -66,6 +66,14 @@ app.get('/', (req, res) => {
     } 
 });
 
+app.get('/signup', (req, res) => {
+    if (login){
+        res.sendFile(path.join(__dirname, "public", "signup.html"));
+    } else {
+        res.sendFile(path.join(__dirname, "public", "login.html"))
+    } 
+});
+
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "login.html"))
 });
@@ -117,3 +125,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(port, host, () => {
     console.log(`Server running at http://${host}:${port}/`);
 });
+
