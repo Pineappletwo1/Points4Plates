@@ -10,8 +10,6 @@ import { fileURLToPath } from 'url';
 const app = express();
 const port = process.env.PORT || 10000;
 const host = '0.0.0.0';
-
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 
@@ -31,6 +29,8 @@ const application = initializeApp(firebaseConfig);
 const db = getFirestore(application);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 async function getPassword(username){
   const querySnapshot = await getDocs(collection(db, "information"));
