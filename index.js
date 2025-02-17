@@ -92,6 +92,7 @@ async function addUser(username, password){
 
 app.get('/', (req, res) => {
     const user = req.cookies.user;
+    res.json(user);
     if (user){
         res.sendFile(path.join(__dirname, "public", "index.html"));
     } else {

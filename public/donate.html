@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="media/logo.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="stuff()">
     <div class="taskbar">
         <div class="left">
             <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
@@ -15,14 +15,37 @@
             <div class="link"><a href="donate.html">Donate</a></div>
         </div>
         <div class="right">
-            <div class="link"><a href="signup.html">Sign Up</a></div>
-            <div class="link"><a href="login.html">Log In</a></div>
-            <div class="icon"><a href="profile.html"><img src="media/logo.png" alt="Points4Plates" style="height: 40px;"></a></div>
-            <div class="link"><a href="profile.html">Username</a></div>
+            <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
+            <div class="link" id="b"><a href="login.html">Log In</a></div>
+            <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
+            <div class="link" id="d"><a href="profile.html">Username</a></div>
             
         </div>
     </div>
-    
-    <script src="index.js"></script>
+    <div>
+        
+    </div>
+    <script>
+        
+        function stuff() {
+            const user = document.cookie.user;
+            console.log(user);
+            const a = document.getElementById("a");
+            const b = document.getElementById("b");
+            const c = document.getElementById("c");
+            const d = document.getElementById("d");
+            if (user){
+                a.style.display = "none";
+                b.style.display = "none";
+                c.style.display = "block";
+                d.style.display = "block";
+            } else {
+                a.style.display = "block";
+                b.style.display = "block";
+                c.style.display = "none";
+                d.style.display = "none";
+            }
+        } 
+    </script>
 </body>
 </html>
