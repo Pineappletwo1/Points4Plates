@@ -147,8 +147,6 @@ app.post('/submit', async (req, res) => {
     await checkLoginStatus(username, password)
     if (login){
         res.cookie('user', username, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
             maxAge: 86400000
         });
         res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -161,8 +159,6 @@ app.post('/create', async (req, res) => {
     await addUser(req.body.Username, req.body.Password);
     await checkLoginStatus(req.body.Username, req.body.Password);
     res.cookie('user', username, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
         maxAge: 86400000
     });
     res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -195,7 +191,5 @@ app.get('/profile', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(port, host, () => {
-    console.log(`Server running at http://${host}:${port}/`);
-});
+app.listen(8080);
 
