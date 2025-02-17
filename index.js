@@ -32,13 +32,16 @@ const db = getFirestore(application);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-async function getPassword(username){
+async function checkLoginStatus(username, password){
   const querySnapshot = await getDocs(collection(db, "information"));
   querySnapshot.forEach((doc) => {
     const data = doc.data();
     const Username = data.Username;
+    const Password = data.Password;
     if (Username == username){
-      login = true;
+        if (Password == password){
+            login = true;
+        }
     }
   });
 }
@@ -52,7 +55,10 @@ async function addUser(username, password){
       const docRef = await addDoc(collection(db, "information"), {
         Username: username,
         Password: password,
-        Points: 0
+        Points: 0,
+        Location: [],
+        Donation: 0,
+
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -81,7 +87,7 @@ app.get('/login', (req, res) => {
 app.post('/submit', async (req, res) => {
     const username = req.body.Username;
     const password = req.body.Password;
-    await getPassword(username)
+    await checkLoginStatus(username, password)
     if (login){
         res.cookie('user', username, {
             httpOnly: true,
@@ -96,7 +102,7 @@ app.post('/submit', async (req, res) => {
 
 app.post('/create', async (req, res) => {
     await addUser(req.body.Username, req.body.Password);
-    await getPassword(req.body.Username);
+    await checkLoginStatus(req.body.Username, req.body.Password);
     res.cookie('user', username, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
