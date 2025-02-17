@@ -8,22 +8,74 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body onload="stuff()">
-    <div class="taskbar">
-        <div class="left">
-            <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
-            <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
-            <div class="link"><a href="donate.html">Donate</a></div>
+    <div class="main">
+        <div class="taskbar">
+            <div class="left">
+                <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
+                <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
+                <div class="link"><a href="donate.html">Donate</a></div>
+            </div>
+            <div class="right">
+                <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
+                <div class="link" id="b"><a href="login.html">Log In</a></div>
+                <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
+                <div class="link" id="d"><a href="profile.html">Username</a></div>
+                
+            </div>
         </div>
-        <div class="right">
-            <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
-            <div class="link" id="b"><a href="login.html">Log In</a></div>
-            <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
-            <div class="link" id="d"><a href="profile.html">Username</a></div>
-            
+        
+        <div class="leaderboard" style="padding: 20px; padding-top: 70px;">
+            <h1>Leaderboard</h1>
+            <div>
+                <table>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Points</th>
+                    </tr>
+                    <tr>
+                        <td><img src="media/1st.png" alt="1st" class="rank-img"></td>
+                        <td><a href="profile.html" class="profile-link">Buffet Palace</a></td>
+                        <td>1500</td>
+                    </tr>
+                    <tr>
+                        <td><img src="media/2nd.png" alt="2nd" class="rank-img"></td>
+                        <td><a href="profile.html" class="profile-link">Olive Garden</a></td>
+                        <td>1400</td>
+                    </tr>
+                    <tr>
+                        <td><img src="media/3rd.png" alt="3rd" class="rank-img"></td>
+                        <td><a href="profile.html" class="profile-link">Chipotle</a></td>
+                        <td>1300</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">4</td>
+                        <td><a href="profile.html" class="profile-link">The Cheesecake Factory</a></td>
+                        <td>1200</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">5</td>
+                        <td><a href="profile.html" class="profile-link">P.F. Chang’s</a></td>
+                        <td>1100</td>
+                    </tr>
+                    
+                    
+                </table>
+            </div>
         </div>
     </div>
+    
+
+    
+    <footer>
+        <p>Created for the EmP AccessHack 2025</p>
+        <p style="text-decoration: underline;"><a href="https://github.com/Pineappletwo1/Points4Plates" class="link">The code for this can be found in our github.</a></p>
+    </footer>
     <script>
         
+      
+
+
         function stuff() {
             const user = document.cookie.user;
             console.log(user);

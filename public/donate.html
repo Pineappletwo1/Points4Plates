@@ -8,23 +8,81 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body onload="stuff()">
-    <div class="taskbar">
-        <div class="left">
-            <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
-            <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
-            <div class="link"><a href="donate.html">Donate</a></div>
+    <div class="main">
+        <div class="taskbar">
+            <div class="left">
+                <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
+                <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
+                <div class="link"><a href="donate.html">Donate</a></div>
+            </div>
+            <div class="right">
+                <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
+                <div class="link" id="b"><a href="login.html">Log In</a></div>
+                <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
+                <div class="link" id="d"><a href="profile.html">Username</a></div>
+                
+            </div>
         </div>
-        <div class="right">
-            <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
-            <div class="link" id="b"><a href="login.html">Log In</a></div>
-            <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
-            <div class="link" id="d"><a href="profile.html">Username</a></div>
-            
-        </div>
-    </div>
-    <div>
+        <div style="padding: 20px; padding-top: 70px;">
+            <h1 >Donate</h1>
+            <h3>Here are available food banks nearby:</h3>
+            <div class="grid-container">
+                <div class="grid-item">
+                  <img src="media/img1.png" alt="Image 1">
+                  <div class="text-content">
+                    <h3>Hopelink</h3>
+                    <p>8990 154th Ave NE, Redmond, WA 98052</p>
+                  </div>
+                </div>
+                <div class="grid-item">
+                  <img src="media/img2.png" alt="Image 2">
+                  <div class="text-content">
+                    <h3>Renewal Food Bank</h3>
+                    <p>15022 Bel-Red Rd, Bellevue, WA 98007
+                    </p>
+                  </div>
+                </div>
+                <div class="grid-item">
+                  <img src="media/img3.png" alt="Image 3">
+                  <div class="text-content">
+                    <h3>University District Food Bank</h3>
+                    <p>5017 Roosevelt Way NE, Seattle, WA 98105</p>
+                  </div>
+                </div>
+                <div class="grid-item">
+                  <img src="media/img4.png" alt="Image 4">
+                  <div class="text-content">
+                    <h3>World Impact Network</h3>
+                    <p>2015 Richards Rd, Bellevue, WA 98005</p>
+                  </div>
+                </div>
+              </div>
+              
+            <form action="/donation" method="POST">
+                <h3>Select an available food bank:</h3>
+                    <input type="radio" id="Hopelink" name="bank" value="Hopelink" required>
+                    <label for="Hopelink"> Hopelink </label><br>
+                    <input type="radio" id="Renewal" name="bank" value="Renewal Food Bank">
+                    <label for="Renewal"> Renewal Food Bank </label><br>
+                    <input type="radio" id="University" name="bank" value="University District Food Bank">
+                    <label for="University">University District Food Bank</label><br>
+                    <input type="radio" id="World" name="bank" value="World Impact Network">
+                    <label for="World">World Impact Network</label>
+                <h3>Enter the amount to donate (in USD)</h3>
+                    <input type="number" id="amount" name="amount" min="0" required>
+                <h3>Enter username</h3>
+                    <input type="text" id="username" name="username" required>
         
+                    <button type="submit">Donate</button>
+            </form>
+        </div>
+
     </div>
+    
+    <footer>
+        <p>Created for the EmP AccessHack 2025</p>
+        <p style="text-decoration: underline;"><a href="https://github.com/Pineappletwo1/Points4Plates" class="link">The code for this can be found in our github.</a></p>
+    </footer>
     <script>
         
         function stuff() {
@@ -38,7 +96,7 @@
                 a.style.display = "none";
                 b.style.display = "none";
                 c.style.display = "block";
-                d.style.display = "block";
+                d.style.display = "block";  
             } else {
                 a.style.display = "block";
                 b.style.display = "block";

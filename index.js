@@ -7,6 +7,8 @@ import { getDocs } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
+import { query, where } from "firebase/firestore"; // Make sure this import is added
+
 
 const app = express();
 const port = process.env.PORT || 10000;
@@ -52,14 +54,16 @@ async function getLeaderboard() {
     
     const amountData = amountDoc.data();    
     const nameData = nameDoc.data();
+    let total = [];
     
     amountData.values.forEach(value => {
-        console.log(value); //remove and value is each element in array
+        total.push(value);
     });
     
     nameData.values.forEach(value => {
-        console.log(value); //same as above
+        total.push(value);
     });
+    return total;
 }
 
 async function changeLeaderboard(amount, name) {
@@ -74,27 +78,55 @@ async function changeLeaderboard(amount, name) {
     });
 }
 
-async function addUser(username, password){
-  try {
-      const docRef = await addDoc(collection(db, "information"), {
-        Username: username,
-        Password: password,
-        Points: 0,
-        Location: [],
-        Donation: 0,
-
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+async function addDonation(username, amount, location) {
+    const usersCollectionRef = collection(db, "information");
+    const q = query(usersCollectionRef, where("Username", "==", username));
+    
+    const querySnapshot = await getDocs(q);
+    const userDoc = querySnapshot.docs[0];
+    const currentData = userDoc.data();
+    const newDonation = currentData.Donation + amount; 
+    const newPoints = currentData.Points + amount;
+    
+    await updateDoc(userDoc.ref, {
+        Donations: newDonation, 
+        Location: [...currentData.Location, location], 
+        Points: newPoints
+    });
 }
+
+
+
+
+
+async function addUser(username, password){
+    const docRef = await addDoc(collection(db, "information"), {
+    Username: username,
+    Password: password,
+    Points: 0,
+    Location: [],
+    Donation: 0,
+
+    });
+}
+
+
 
 app.get('/', (req, res) => {
     const user = req.cookies.user;
-    res.json(user);
     if (user){
         res.sendFile(path.join(__dirname, "public", "index.html"));
+    } else {
+        res.sendFile(path.join(__dirname, "public", "login.html"))
+    } 
+});
+
+app.get('/leaderboard', async (req, res) => {
+    const user = req.cookies.user;
+    const total = await getLeaderboard();
+    if (user){
+        res.sendFile(path.join(__dirname, "public", "leaderboard.html"));
+        res.json(total);
     } else {
         res.sendFile(path.join(__dirname, "public", "login.html"))
     } 
@@ -134,6 +166,10 @@ app.post('/create', async (req, res) => {
         maxAge: 86400000
     });
     res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.post('/donation', async (req, res) => {
+    await addDonation(req.body.username, req.body.amount, req.body.bank);
 });
 
 

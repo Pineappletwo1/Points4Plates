@@ -8,28 +8,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body onload="stuff()">
-    <div class="taskbar">
-        <div class="left">
-            <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
-            <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
-            <div class="link"><a href="donate.html">Donate</a></div>
+    
+        <div class="taskbar">
+            <div class="left">
+                <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
+                <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
+                <div class="link"><a href="donate.html">Donate</a></div>
+            </div>
+            <div class="right">
+                <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
+                <div class="link" id="b"><a href="login.html">Log In</a></div>
+                <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
+                <div class="link" id="d"><a href="profile.html">Username</a></div>
+                
+            </div>
         </div>
-        <div class="right">
-            <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
-            <div class="link" id="b"><a href="login.html">Log In</a></div>
-            <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
-            <div class="link" id="d"><a href="profile.html">Username</a></div>
-            
+        <div class="bg-image"></div>
+        <div class="bg-text">
+            <img src="media/logo text.png" alt="Points4Plates" style="height: 150px; padding-top: 20px;">
+            <h1 style="font-size:50px">Donate leftover food and climb the leaderboards!</h1>
         </div>
-    </div>
-    <div class="bg-image"></div>
-    <div class="bg-text">
-        <img src="media/logo text.png" alt="Points4Plates" style="height: 150px; padding-top: 20px;">
-        <h1 style="font-size:50px">Donate leftover food and climb the leaderboards!</h1>
-    </div>
-    <p>hi</p>
-
-
+        <div class="info">
+            <h1>Weekly Features</h1>
+            <h3>The current top 1 is Buffet Palace!</h3>
+            <a href="leaderboard.html">
+                <button class="leaderboard-btn">View entire leaderboard</button>
+            </a>
+            <h1>About Us</h1>
+            <h3>Points4Plates seeks to help reduce food waste and redirect excess food to those in need. Earn points by donating food, and climb the leaderboards. Every week, a new winner will be crowned!
+            </h3>
+        </div>
+    
+    <footer>
+        <p>Created for the EmP AccessHack 2025</p>
+        <p style="text-decoration: underline;"><a href="https://github.com/Pineappletwo1/Points4Plates"  class="link">The code for this can be found in our github.</a></p>
+    </footer>
     <script>
         
         function stuff() {
