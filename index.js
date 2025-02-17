@@ -30,8 +30,6 @@ const db = getFirestore(application);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 async function getPassword(username){
   const querySnapshot = await getDocs(collection(db, "information"));
   querySnapshot.forEach((doc) => {
@@ -84,11 +82,21 @@ app.post('/submit', async (req, res) => {
     }
 });
 
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'style.css'));
+});
 
-
-app.get('/location', (req, res) => {
+app.get('/donate', (req, res) => {
     if (login){
-        res.sendFile(path.join(__dirname, "public", "location.html"));
+        res.sendFile(path.join(__dirname, "public", "donate.html"));
+    } else {
+        res.sendFile(path.join(__dirname, "public", "login.html"))
+    }
+});
+
+app.get('/leaderboard', (req, res) => {
+    if (login){
+        res.sendFile(path.join(__dirname, "public", "leaderboard.html"));
     } else {
         res.sendFile(path.join(__dirname, "public", "login.html"))
     }
