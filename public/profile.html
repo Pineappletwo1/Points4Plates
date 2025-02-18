@@ -1,85 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Points4Plates | Profile</title>
-    <link rel="icon" type="image/x-icon" href="media/logo.ico" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body onload="stuff()">
+    <link rel="icon" type="image/x-icon" href="media/logo.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="stuff()">
     <div class="main">
-      <div class="taskbar">
-        <div class="left">
-          <div class="icon">
-            <a href="index.html"
-              ><img
-                src="media/logo text.png"
-                alt="Points4Plates"
-                style="height: 40px; margin-right: 20px"
-            /></a>
-          </div>
-          <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
-          <div class="link"><a href="donate.html">Donate</a></div>
+        <div class="taskbar">
+            <div class="left">
+                <div class="icon"><a href="index.html"><img src="media/logo text.png" alt="Points4Plates" style="height: 40px; margin-right: 20px;"></a></div>
+                <div class="link"><a href="leaderboard.html">Leaderboard</a></div>
+                <div class="link"><a href="donate.html">Donate</a></div>
+            </div>
+            <div class="right">
+                <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
+                <div class="link" id="b"><a href="login.html">Log In</a></div>
+                <div class="icon" id="c"><a href="profile.html"><img src="media/default.png" alt="Pfp" style="height: 40px;"></a></div>
+                <div class="link" id="d"><a href="profile.html">Username</a></div>
+                
+            </div>
         </div>
-        <div class="right">
-          <div class="link" id="a"><a href="signup.html">Sign Up</a></div>
-          <div class="link" id="b"><a href="login.html">Log In</a></div>
-          <div class="icon" id="c">
-            <a href="profile.html"
-              ><img src="media/default.png" alt="Pfp" style="height: 40px"
-            /></a>
-          </div>
-          <div class="link" id="d"><a href="profile.html">Username</a></div>
+        <div class="profile" style="padding: 20px; padding-top: 70px;">
+            <h1> 🥇 Buffet Palace</h1>
+            <img src="media/profile.png" width="300px">
+            <p style="width: 50%;">"Buffet Palace offers an all-you-can-eat dining experience featuring a wide variety of delicious dishes from around the world. Whether you're craving savory comfort food, fresh seafood, or decadent desserts, we have something for everyone. Our spacious, welcoming atmosphere is perfect for family gatherings, celebrations, or casual dining. Indulge in endless flavors at Buffet Palace, where every meal is a feast!"</p>
+            <h1>Contributions:</h3>
+            <h2>1/17/2025 - 200 points</h2>
+            <h2>1/23/2025 - 300 points</h2>
+            <h2>2/10/2025 - 400 points</h2>
+            <h2>2/17/2025 - 600 points</h2>
         </div>
-      </div>
-      <div class="profile" style="padding: 20px; padding-top: 70px">
-        <h1 id="username"></h1>
-        <img src="media/default.png" width="300px" />
-        <p style="width: 50%">
-        </p>
-        <h1>Points</h1>
-        <h2 id="points"></h2>
-      </div>
     </div>
     <footer>
-      <p>Created for the EmP AccessHack 2025</p>
-      <p style="text-decoration: underline">
-        <a href="https://github.com/Pineappletwo1/Points4Plates" class="link"
-          >The code for this can be found in our github.</a
-        >
-      </p>
+        <p>Created for the EmP AccessHack 2025</p>
+        <p style="text-decoration: underline;"><a href="https://github.com/Pineappletwo1/Points4Plates"  class="link">The code for this can be found in our github.</a></p>
     </footer>
     <script>
-      function stuff() {
-        const user = document.cookie.user;
-        console.log(user);
-        const a = document.getElementById("a");
-        const b = document.getElementById("b");
-        const c = document.getElementById("c");
-        const d = document.getElementById("d");
-        const e = document.getElementById("username");
-        const f = document.getElementById("points");
-        const g = document.getElementById("locations");
-        if (user) {
-          a.style.display = "none";
-          b.style.display = "none";
-          c.style.display = "block";
-          d.style.display = "block";
-          usernameElement.innerHTML = user;
-          fetch('/profile')
-          .then(response => response.json())
-          .then(data => {
-            f.textContent = `Your Points: ${data.points}`;
-          })
-
-        } else {
-          a.style.display = "block";
-          b.style.display = "block";
-          c.style.display = "none";
-          d.style.display = "none";
-        }
-      }
+        
+        function stuff() {
+            const user = document.cookie.user;
+            console.log(user);
+            const a = document.getElementById("a");
+            const b = document.getElementById("b");
+            const c = document.getElementById("c");
+            const d = document.getElementById("d");
+            if (user){
+                a.style.display = "none";
+                b.style.display = "none";
+                c.style.display = "block";
+                d.style.display = "block";
+            } else {
+                a.style.display = "block";
+                b.style.display = "block";
+                c.style.display = "none";
+                d.style.display = "none";
+            }
+        } 
     </script>
-  </body>
+</body>
 </html>

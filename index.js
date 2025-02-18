@@ -160,7 +160,7 @@ app.post("/submit", async (req, res) => {
 app.post("/create", async (req, res) => {
   await addUser(req.body.Username, req.body.Password);
   await checkLoginStatus(req.body.Username, req.body.Password);
-  res.cookie("user", req.body.Username, {
+  res.cookie("user", username, {
     maxAge: 86400000,
   });
   res.sendFile(path.join(__dirname, "public", "index.html"));
